@@ -15,27 +15,41 @@ and what you should write is the favNum function that makes the code above work,
     cb(str);
    }
 
-   sayHi('Hi Katie', function(thingToSay){
-      alert(thingToSay); //should alert ('Hi Katie')'
-   });
+   sayHi('Hi Katie', function(thingToSay){ alert(thingToSay)}; 
+
+   //should alert ('Hi Katie')'});
     
     
+
+var myName = function(name, ns) {
+  name = 'paul';
+  ns(name);
+};
+
+myName('name', function(nameString){
+  console.log(nameString);
+});
 */
 
-
+var first = function(names, fn){
+  fn(names[0]);
+};
 
   //Code Here for first
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+
 first(names, function(firstName){
-  console.log('The first name in names is ', firstName)
+  console.log('The first name in names is ', firstName);
 });
 
 
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
-
+var last = function(names, ln){
+  ln(names[names.length-1]);
+};
 
 
   //Code Here for last
@@ -51,16 +65,15 @@ last(names, function(lastName){
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
-
-
-
-
+var multiply = function(n1,n2,a){
+  a(n1*n2);
+};
 
   //Code Here for multiply
 
 multiply(4, 3, function(answer){
   console.log('The answer is ', answer); //should console.log 12
-})
+});
 
 
 
@@ -68,13 +81,16 @@ multiply(4, 3, function(answer){
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
-
-
-
-
-  //Code Here for contains
+var contains = function(names, nameOne, res){
+  if(names.indexOf(nameOne) > 0){
+    res(true);
+  }else{
+    res(false);
+  }
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+
 contains(names, 'Colt', function(result){
   if(result === true){
     console.log('Colt is in the array');
@@ -90,8 +106,15 @@ contains(names, 'Colt', function(result){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
+var uniq = function(names, uA){
+  uniqArr = [];
+  for(var i = 0; i<names.length;i++){
+    if(uniqArr.indexOf(names[i])===-1){
+      uniqArr.push(names[i]);
+    }
+  }
+  uA(uniqArr);
+};
     //Code Here for uniq
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -105,14 +128,19 @@ uniq(names, function(uniqArr){
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
-
-
-
-    //Code Here for each
+var each = function(names, place){
+  item = [];
+  indice = [];
+  for(var i = 0; i<names.length;i++){
+    item.push(' '+i);
+    indice.push(' '+names[i]);
+  }
+  place(indice,item);
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
-  console.log('The item in the ' + indice + ' position is ' + item)
+  console.log('The item in the ' + indice + ' position is ' + item);
 });
 
 
@@ -123,7 +151,13 @@ each(names, function(item, indice){
 
 
 
-
+var getUserById = function(users, id, fu){
+  for(var i=0; i<users.length; i++){
+    if(users[i].id===id){
+      fu(users[i]);
+    }
+  }
+};
 
  //code here for getUserById
 
